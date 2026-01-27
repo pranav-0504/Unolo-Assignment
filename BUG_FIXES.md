@@ -30,8 +30,11 @@
 - Why: SQLite schema defines columns as latitude/longitude
 
 
-
-
+### Bug 6: Incorrect HTTP status code for validation error
+- File: backend/routes/checkin.js
+- Issue: API returned 200 status for missing required fields
+- Fix: Changed response status to 400 Bad Request
+- Why: Client errors should not return success status
 
 
 

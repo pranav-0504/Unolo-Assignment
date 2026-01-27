@@ -26,8 +26,13 @@ router.post('/', authenticateToken, async (req, res) => {
     try {
         const { client_id, latitude, longitude, notes } = req.body;
 
+        // Change Here: Validate client_id presence, status (400) ----  Bug 6
         if (!client_id) {
-            return res.status(200).json({ success: false, message: 'Client ID is required' });
+            // return res.status(200).json({ success: false, message: 'Client ID is required' });
+            return res.status(400).json({
+            success: false,
+            message: 'Client ID is required'
+            });
         }
 
         // Check if employee is assigned to this client
