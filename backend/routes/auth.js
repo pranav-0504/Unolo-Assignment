@@ -2,6 +2,7 @@ const express = require('express');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const pool = require('../config/database');
+const { JWT_SECRET } = require('../config/jwt');
 
 const router = express.Router();
 
@@ -35,7 +36,7 @@ router.post('/login', async (req, res) => {
         // Change - 2 Here: Removed Password from JWT Token Payload
         const token = jwt.sign(
             { id: user.id, email: user.email, role: user.role, name: user.name },
-            process.env.JWT_SECRET,
+            JWT_SECRET,
             { expiresIn: '24h' }
         );
 
@@ -67,7 +68,7 @@ router.get('/me', async (req, res) => {
     }
 
     try {
-        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+        const decoded = jwt.verify(token, JWT_SECRET);
         const [users] = await pool.execute(
             'SELECT id, name, email, role FROM users WHERE id = ?',
             [decoded.id]
