@@ -55,7 +55,9 @@ router.get('/stats', authenticateToken, requireManager, async (req, res) => {
 // Get employee dashboard (for employees)
 router.get('/employee', authenticateToken, async (req, res) => {
     try {
-        const today = new Date().toISOString().split('T')[0];
+        
+        // const today = new Date().toISOString().split('T')[0];
+        const today = new Date().toLocaleDateString('en-CA');
 
         // Get today's check-ins
         const [todayCheckins] = await pool.execute(
