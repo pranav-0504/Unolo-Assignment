@@ -51,6 +51,11 @@
 - Why: Prevents timezone mismatch in DATE() comparisons
 
 
+### Bug 9: Checkout allowed without active check-in
+- File: backend/routes/checkin.js
+- Issue: Checkout query did not filter active check-ins
+- Fix: Added status = 'checked_in' condition
+- Why: Prevents invalid checkout operations
 
 
 

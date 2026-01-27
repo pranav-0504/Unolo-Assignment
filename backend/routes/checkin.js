@@ -77,8 +77,9 @@ router.post('/', authenticateToken, async (req, res) => {
 // Checkout from current location
 router.put('/checkout', authenticateToken, async (req, res) => {
     try {
+        // Bug 9 Fix: Get the latest active check-in to checkout
         const [activeCheckins] = await pool.execute(
-            'SELECT * FROM checkins WHERE employee_id = ? ORDER BY checkin_time DESC LIMIT 1',
+            `SELECT * FROM checkins WHERE employee_id = ? AND status = 'checked_in' ORDER BY checkin_time DESC LIMIT 1`,
             [req.user.id]
         );
 
@@ -92,7 +93,8 @@ router.put('/checkout', authenticateToken, async (req, res) => {
         );
 
         res.json({ success: true, message: 'Checked out successfully' });
-    } catch (error) {
+    } 
+    catch (error) {
         console.error('Checkout error:', error);
         res.status(500).json({ success: false, message: 'Checkout failed' });
     }
