@@ -53,8 +53,9 @@ router.post('/', authenticateToken, async (req, res) => {
             });
         }
 
+        // Change Here: Added latitude and longitude fields in INSERT INTO checkins(...)
         const [result] = await pool.execute(
-            `INSERT INTO checkins (employee_id, client_id, lat, lng, notes, status)
+            `INSERT INTO checkins (employee_id, client_id, latitude, longitude, notes, status)
              VALUES (?, ?, ?, ?, ?, 'checked_in')`,
             [req.user.id, client_id, latitude, longitude, notes || null]
         );

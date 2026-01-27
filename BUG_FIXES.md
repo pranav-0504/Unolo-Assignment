@@ -22,3 +22,21 @@
 - Issue: JWT_SECRET imported but process.env.JWT_SECRET used directly
 - Fix: Used centralized JWT_SECRET everywhere
 - Why: Prevents secret mismatch and improves maintainability
+
+### Bug 5: Location data not saved correctly during check-in
+- File: backend/routes/checkin.js
+- Issue: Used non-existent columns `lat` and `lng`
+- Fix: Replaced with correct column names `latitude` and `longitude`
+- Why: SQLite schema defines columns as latitude/longitude
+
+
+
+
+
+
+
+
+
+
+
+
