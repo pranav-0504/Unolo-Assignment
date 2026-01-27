@@ -7,7 +7,10 @@ const router = express.Router();
 // Get dashboard stats for manager
 router.get('/stats', authenticateToken, requireManager, async (req, res) => {
     try {
-        const today = new Date().toISOString().split('T')[0];
+        // const today = new Date().toISOString().split('T')[0];
+
+        // Bug 8 Fix: 'en-CA' locale to get 'YYYY-MM-DD' format !
+        const today = new Date().toLocaleDateString('en-CA');
 
         // Get team members
         const [teamMembers] = await pool.execute(

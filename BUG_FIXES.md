@@ -44,8 +44,11 @@
 - Why: Prevents SQL injection and improves query safety
 
 
-
-
+### Bug 8: Dashboard shows incorrect daily activity
+- File: backend/routes/dashboard.js
+- Issue: Used UTC date comparison for SQLite timestamps
+- Fix: Switched to local date format using toLocaleDateString
+- Why: Prevents timezone mismatch in DATE() comparisons
 
 
 
