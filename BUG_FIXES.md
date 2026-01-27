@@ -37,6 +37,21 @@
 - Why: Client errors should not return success status
 
 
+### Bug 7: SQL injection risk in history filters
+- File: backend/routes/checkin.js
+- Issue: User input directly interpolated into SQL query
+- Fix: Used parameterized queries with placeholders
+- Why: Prevents SQL injection and improves query safety
+
+
+
+
+
+
+
+
+
+
 
 
 
