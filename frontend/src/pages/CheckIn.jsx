@@ -89,7 +89,7 @@ function CheckIn({ user }) {
         setSubmitting(true);
 
         try {
-            const response = await api.put('/checkin/checkout');
+            const response = await api.put('/api/checkin/checkout');
             
             if (response.data.success) {
                 setSuccess('Checked out successfully!');
